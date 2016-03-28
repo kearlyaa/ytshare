@@ -1,4 +1,11 @@
 
-<h2><%= @video.name %></h2>
+<h2><%= @video.name.strip %></h2>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @watch_id %>" frameborder="0" allowfullscreen></iframe>
+<div class="video_container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @watch_id %>" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="video_navigation">
+  <%= link_to "Previous", @video.previous  %>
+  <%= link_to "Next", @video.next  %>
+</div>

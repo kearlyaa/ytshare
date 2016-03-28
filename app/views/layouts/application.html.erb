@@ -11,9 +11,12 @@
   <body>
 
     <header>
-      <%= link_to 'Add your favorite video', '#', data: {toggle: 'modal', target: '#myModal'} %>
-      <%= link_to 'Newest Video', '#' %>
-
+      <h1><%= link_to "YT Share", root_path %></h1>
+      <!-- <div class="slogan">Share your favorite Youtube Videos</div> -->
+      <div class="navigation_links">
+        <%= link_to 'Add your favorite video', '#', data: {toggle: 'modal', target: '#myModal'} %>
+        <%= link_to 'Newest Video', videos_path + "/" + @video.last.id.to_s %> <!-- + @video.last.id.to_s --> 
+      </div>
     </header>
 
     <!-- Button trigger modal -->
@@ -58,6 +61,7 @@
       <% end %>
 
       <%= yield %>
+
     </div>
 
     <div class="footer">

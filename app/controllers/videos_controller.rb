@@ -2,7 +2,9 @@ class VideosController < ApplicationController
   attr_reader :watch_id
 
   def index
-
+    @video = Video.first
+    url = @video.url
+    get_watch_id(url)
   end
 
   def show

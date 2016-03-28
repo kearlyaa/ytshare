@@ -3,10 +3,14 @@ class Video < ActiveRecord::Base
   validates :url, presence: true, length: { maximum: 50, minimum: 3 }
 
   def previous
-    Video.where('video.id < ?', self.id).first
+    @previous = Video.where('videos.id < ?', self.id).first
   end
 
   def next
-    Video.where('video.id > ?', self.id).last
+    @next = Video.where('videos.id > ?', self.id).first
+  end
+
+  def last
+    Video.last
   end
 end
