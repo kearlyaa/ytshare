@@ -22,6 +22,10 @@ header{
   color: #ffffff;
   background: #2b2b2b;
   border-bottom: 3px solid #2C75FF;
+  min-height: 60px;
+  padding: 10px 62px;
+  position: relative;
+  margin-bottom: 30px;
 }
 
 header h1{
@@ -38,6 +42,25 @@ header h1 a:hover{
   text-decoration: none;
   color: #ffffff;
   opacity: .9;
+}
+
+.navigation_links a{
+  display: inline-block;
+  margin-right: 5px;
+  color: #ffffff;
+  transition: color 0.5s ease;
+}
+
+.navigation_links a:hover{
+  text-decoration: none;
+  color: #2C75FF;
+}
+
+.navigation_links{
+  text-align: right;
+  position: absolute;
+  right: 62px;
+  bottom: 0;
 }
 
 label{
@@ -65,4 +88,18 @@ abbr[title="required"]{
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+
+.video_navigation a{
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.next{
+  float: right;
+}
+
+.previous{
+  float: left;
 }

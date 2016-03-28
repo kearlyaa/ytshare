@@ -8,15 +8,12 @@ class VideosController < ApplicationController
   end
 
   def show
-    
     @video = Video.find(params[:id])
     url = @video.url
     get_watch_id(url)
-    rescue ActiveRecord::RecordNotFound
+  rescue ActiveRecord::RecordNotFound
       flash[:error] = "Video doesn't exist"
       redirect_to root_path
-    
-    
   end
 
   def create
@@ -24,7 +21,6 @@ class VideosController < ApplicationController
     if @video.invalid?
       flash[:error] = 'Unable to add video.  Please provide a valid name and url.'
     end
-
     redirect_to root_path
   end
 

@@ -2,10 +2,10 @@
 <h2><%= @video.name.strip %></h2>
 
 <div class="video_container">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @watch_id %>" frameborder="0" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @watch_id %>?rel=0" frameborder="0" allowfullscreen ></iframe>
 </div>
 
 <div class="video_navigation">
-  <%= link_to "Previous", @video.previous  %>
-  <%= link_to "Next", @video.next  %>
+  <%= link_to "Previous", @video.previous, class: "previous"  %>
+  <%= link_to "Next", @video.next, class: "next"  %>
 </div>

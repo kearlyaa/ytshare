@@ -11,46 +11,49 @@
   <body>
 
     <header>
-      <h1><%= link_to "YT Share", root_path %></h1>
-      <!-- <div class="slogan">Share your favorite Youtube Videos</div> -->
-      <div class="navigation_links">
-        <%= link_to 'Add your favorite video', '#', data: {toggle: 'modal', target: '#myModal'} %>
-        <%= link_to 'Newest Video', videos_path + "/" + @video.last.id.to_s %> <!-- + @video.last.id.to_s --> 
+      <div class="col-xs-12 col-sm-6">
+        <h1><%= link_to "YT Share", root_path %></h1>
       </div>
+
+      <div class="navigation_links col-xs-12 col-sm-6">
+        <%= link_to 'add video', '#', data: {toggle: 'modal', target: '#myModal'} %>
+        <%= link_to 'newest video', videos_path + "/" + @video.last.id.to_s %> 
+      </div>
+      <div style="clear:both" /></div>
     </header>
 
     <!-- Button trigger modal -->
  
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Add Your Video</h4>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Add a Video</h4>
+          </div>
+          <%= simple_form_for Video.new do |f| %>
+            <div class="modal-body">
+              <h1>Enter Your Video Details</h1>
+              
+                <%= f.input :name, label: "Name of Youtube Video", placeholder: "Super Awesome Video!" %>
+                <%= f.input :url, label: "Youtube Video URL", placeholder: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" %>
+                          
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%= f.submit 'Add Video', class: 'btn btn-danger' %>
+            </div>
+          <% end %>
+          
         </div>
-        <%= simple_form_for Video.new do |f| %>
-          <div class="modal-body">
-            <h1>Enter Your Video Details</h1>
-            
-              <%= f.input :name, label: "Name of Youtube Video", placeholder: "Super Awesome Video!" %>
-              <%= f.input :url, label: "Youtube Video URL", placeholder: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" %>
-                        
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <%= f.submit 'Add Video', class: 'btn btn-danger' %>
-          </div>
-        <% end %>
-        
       </div>
     </div>
-  </div>
 
-    <br class="clear" />
+    <div style="clear:both" /></div>
     
-    <hr />
+   
 
     <div class="container">
       
@@ -65,15 +68,9 @@
     </div>
 
     <div class="footer">
-      <div class="container">
-        <div class="col-xs-12 col-sm-6">
-          
-        </div>
-        <div class="col-xs-12 col-sm-6 footer-blurb">
-          
-        </div>
-      </div>
-
+      <div class="footer_copy">&copy; <%= Date.today.strftime("%Y") %> Aaron Kearly</div>
+    </div>
+    
   </body>
 
 </html>
