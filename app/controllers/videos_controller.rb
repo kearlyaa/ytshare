@@ -3,13 +3,13 @@ class VideosController < ApplicationController
 
   def index
     @video = Video.first
-    url = @video.url
+    url = @video.url unless params[:id].nil?
     get_watch_id(url)
   end
 
   def show
     @video = Video.find(params[:id])
-    url = @video.url
+    url = @video.url unless params[:id].nil?
     get_watch_id(url)
   rescue ActiveRecord::RecordNotFound
       flash[:error] = "Video doesn't exist"
