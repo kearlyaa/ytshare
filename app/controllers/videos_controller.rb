@@ -25,8 +25,13 @@ class VideosController < ApplicationController
   end
 
   def get_watch_id(url)
-    params = Rack::Utils.parse_query URI(url).query
-    @watch_id = params["v"]
+    require 'uri'
+    if url =~ /\A#{URI::regexp(['http', 'https'])}\z/
+      params = Rack::Utils.parse_query URI(url).query
+      @watch_id = params["v"]
+    else
+      @watch_id = ""
+    end
   end
 
   private
