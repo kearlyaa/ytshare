@@ -3,8 +3,11 @@ class VideosController < ApplicationController
 
   def index
     @video = Video.first
-    url = @video.url unless params[:id].nil?
+    url = @video.url unless @video.id.nil?
     get_watch_id(url)
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "Video doesn't exist"
+    redirect_to root_path
   end
 
   def show
@@ -26,11 +29,12 @@ class VideosController < ApplicationController
 
   def get_watch_id(url)
     require 'uri'
+
     if url =~ /\A#{URI::regexp(['http', 'https'])}\z/
       params = Rack::Utils.parse_query URI(url).query
       @watch_id = params["v"]
     else
-      @watch_id = ""
+      @watch_id = url
     end
   end
 
