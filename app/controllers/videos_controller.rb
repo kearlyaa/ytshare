@@ -1,10 +1,11 @@
+require 'uri'
+
 class VideosController < ApplicationController
-  attr_reader :watch_id
+  
 
   def index
-    @video = Video.first
-    url = @video.url unless @video.id.nil?
-    get_watch_id(url)
+    @video = Video.first 
+    set_watch_id_from_video(@video)
   rescue ActiveRecord::RecordNotFound
     flash[:error] = "Video doesn't exist"
     redirect_to root_path
@@ -12,8 +13,7 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find(params[:id])
-    url = @video.url unless params[:id].nil?
-    get_watch_id(url)
+    set_watch_id_from_video(@video)
   rescue ActiveRecord::RecordNotFound
       flash[:error] = "Video doesn't exist"
       redirect_to video_path(@video)
@@ -27,18 +27,17 @@ class VideosController < ApplicationController
     redirect_to(@video, :notice=> 'Video Added!')
   end
 
-  def get_watch_id(url)
-    require 'uri'
+  private
 
+  def set_watch_id_from_video(video)
+    url = video.url unless video.id.nil?
     if url =~ /\A#{URI::regexp(['http', 'https'])}\z/
       params = Rack::Utils.parse_query URI(url).query
       @watch_id = params["v"]
     else
       @watch_id = url
     end
-  end
-
-  private
+  end  
 
   def video_params
     params.require(:video).permit(:name, :url)
